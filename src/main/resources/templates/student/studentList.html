@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>Student List</title>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="/css/news.css" media="all" />
+</head>
+
+<body>
+<form class="layui-form" id="pageForm" name="pageForm" action="/dmanager/studentList" method="post">
+	<blockquote class="layui-elem-quote news_search">
+		<div class="layui-inline">
+		    <div class="layui-input-inline" style="width: 150px">
+		    	<input type="text" name="cname" th:value="${cname}" placeholder="input name" class="layui-input search_input"/>
+			</div>
+			<div class="layui-input-inline" style="width: 150px">
+					<select id="cgrade" name="cgrade" >
+						<option value="0" th:selected="${cgrade} == 0">Grade</option>
+						<option value="1" th:selected="${cgrade} == 1">Seniro One</option>
+						<option value="2" th:selected="${cgrade} == 2">Seniro Two</option>
+						<option value="3" th:selected="${cgrade} == 3">Seniro Three</option>
+					</select>
+			</div>
+			<div class="layui-input-inline" style="width: 150px">
+				<select id="cclazz" name="cclazz" >
+					<option value="0" th:selected="${cclazz} == 0">Class</option>
+					<option value="1" th:selected="${cclazz} == 1">(1)</option>
+					<option value="2" th:selected="${cclazz} == 2">(2)</option>
+					<option value="3" th:selected="${cclazz} == 3">(3)</option>
+					<option value="4" th:selected="${cclazz} == 4">(4)</option>
+					<option value="5" th:selected="${cclazz} == 5">(5)</option>
+					<option value="6" th:selected="${cclazz} == 6">(6)</option>
+					<option value="7" th:selected="${cclazz} == 7">(7)</option>
+				</select>
+			</div>
+			<div class="layui-input-inline" style="width: 150px">
+				<select id="cgender" name="cgender" >
+					<option value="2" th:selected="${cgender} == 2">Gender</option>
+					<option value="0" th:selected="${cgender} == 0">male</option>
+					<option value="1" th:selected="${cgender} == 1">female</option>
+				</select>
+			</div>
+			<div class="layui-input-inline" style="width: 150px">
+					<select id="cdormId" name="cdormId" >
+						<option value="0" th:selected="${cdormId} == 0">Dorm</option>
+						<option th:each="dorm : ${dormList}" th:selected="*{dorm.id} == ${cdormId}" th:value="${dorm.id}" th:text="${dorm.dormName}"></option>
+					</select>
+			</div>
+			<div class="layui-input-inline" style="width: 150px">
+				<select id="cchara" name="cchara" >
+					<option value="0" th:selected="${cchara} == 0">Character </option>
+					<option value="1" th:selected="${cchara} == 1">Emotional Center</option>
+					<option value="2" th:selected="${cchara} == 2">Ideas Centre</option>
+					<option value="3" th:selected="${cchara} == 3">Instinctive center</option>
+				</select>
+			</div>
+
+		    <button class="layui-btn search_btn" type="submit">Check</button>
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn layui-btn-normal newsAdd_btn">Input Student Info</a>
+		</div>
+
+		<div class="layui-inline">
+			<a class="layui-btn layui-btn-danger dormAssign_btn" th:href="@{/dmanager/toDormChoose}">Assign Dorm</a>
+		</div>
+	</blockquote>
+	<div class="layui-form news_list">
+	  	<table class="layui-table">
+		    <colgroup>
+				<col width="8%"/>
+				<col width="8%"/>
+				<col width="8%"/>
+				<col width="5%"/>
+				<col width="5%"/>
+				<col width="8%"/>
+				<col width="8%"/>
+				<col width="15%"/>
+
+		    </colgroup>
+		    <thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Grade</th>
+					<th>Class</th>
+					<th>Gender</th>
+					<th>Character</th>
+					<th>Dorm</th>
+					<th>Operate</th>
+				</tr>
+		    </thead>
+		    <tbody class="news_content">
+				<tr th:each="var,iterStat: ${pageData}">
+					<td th:text="${var.num}"></td>
+					<td th:text="${var.studentName}"></td>
+					<td th:if="${var.grade==1}">Senior One</td>
+					<td th:if="${var.grade==2}">Senior Two</td>
+					<td th:if="${var.grade==3}">Senior Three</td>
+					<td th:text="${var.clazz}"></td>
+					<td th:if="${var.gender==0}">male</td>
+					<td th:if="${var.gender==1}">female</td>
+
+					<td th:if="${var.chara==0}"> </td>
+					<td th:if="${var.chara==1}">Emotional Center</td>
+					<td th:if="${var.chara==2}">Ideas Centre</td>
+					<td th:if="${var.chara==3}">Instinctive Center</td>
+
+					<td th:text="${var.getDormName()}"></td>
+					<td>
+						<a class="layui-btn layui-btn-xs" th:href="@{/dmanager/studentView(id=${var.id})}">
+							<i class="layui-icon">&#xe60a;</i>
+						</a>
+						<a class="layui-btn layui-btn-xs layui-btn-normal" th:href="@{/dmanager/studentEdit(id=${var.id})}">
+							<i class="layui-icon">&#xe642;</i>
+						</a>
+						<a class="layui-btn layui-btn-xs layui-btn-danger" th:href="@{/dmanager/studentDelete(id=${var.id})}">
+							<i class="layui-icon">&#xe640;</i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="layui-table-page">
+		<div id="layui-table-page1">
+			<div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-2">
+				<span class="layui-laypage-count" th:text="'totle'+${pageParam.count}+''"></span>
+				<span class="layui-laypage-skip"><input type="number" name="pageNumber" id="pageNumber" th:value="${pageParam.pageNumber}" class="layui-input"/></span>
+				<span class="layui-laypage-limits">
+						<a class="layui-btn toPage">go to</a>
+						<a class="layui-btn toPageOne">first page</a>
+						<a class="layui-btn previousPage"><i class="layui-icon"></i></a>
+						<a class="layui-btn nextPage"><i class="layui-icon"></i></a>
+						<a class="layui-btn toPageLast">last page</a>
+					</span>
+				<span class="layui-laypage-count" th:text="'共'+${pageParam.size}+'页'"></span>
+				<span class="layui-laypage-limits">
+						<select lay-ignore="" id="pageSize" name="pageSize">
+							<option value="10" th:selected="${pageParam.pageSize==10?'selected':'false'}">10</option>
+							<option value="20" th:selected="${pageParam.pageSize==20?'selected':'false'}">20</option>
+							<option value="30" th:selected="${pageParam.pageSize==30?'selected':'false'}">30</option>
+							<option value="40" th:selected="${pageParam.pageSize==40?'selected':'false'}">40</option>
+							<option value="50" th:selected="${pageParam.pageSize==50?'selected':'false'}">50</option>
+							<option value="60" th:selected="${pageParam.pageSize==60?'selected':'false'}">60</option>
+							<option value="70" th:selected="${pageParam.pageSize==70?'selected':'false'}">70</option>
+							<option value="80" th:selected="${pageParam.pageSize==80?'selected':'false'}">80</option>
+							<option value="90" th:selected="${pageParam.pageSize==90?'selected':'false'}">90</option>
+							<option value="100" th:selected="${pageParam.pageSize==100?'selected':'false'}">100</option>
+						</select>
+					</span>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="count" name="count" th:value="${pageParam.count}"/>
+	<input type="hidden" id="size" name="size" th:value="${pageParam.size}"/>
+	</form>
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/student/studentList.js"></script>
+	<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+	<script>
+		layui.use(['element','upload'], function() {
+			element = layui.element;
+			upload = layui.upload;
+
+			//指定允许上传的文件类型
+			upload.render({
+				elem: '#uploadExcel'
+				,url: path+'/FacjudgController/uploadImg.do'
+				,accept: 'file' //普通文件
+				,multiple: true
+				,done: function(res){
+					console.log(res);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

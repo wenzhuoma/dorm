@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>IDAS</title>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all"/>
+
+</head>
+<body class="childrenBody">
+	<form class="layui-form"  action="/dmanager/studentSave" method="post" enctype="multipart/form-data">
+		<input th:value="${entity.id}" id="id" name="id" type="hidden"/>
+		<div class="layui-form-item">
+			<label class="layui-form-label">School ID</label>
+			<div class="layui-input-block">
+				<input th:value="${entity.num}" id="num" name="num" type="text" class="layui-input newsName" lay-verify="required" placeholder="please input school id"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">Name</label>
+			<div class="layui-input-block">
+				<input th:value="${entity.studentName}" id="studentName" name="studentName" type="text" class="layui-input newsName" lay-verify="required" placeholder="please input name"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">Gender</label>
+			<div class="layui-input-block">
+				<input type="radio" th:checked="${entity.gender==0?'checked':'false'}" name="gender" value="0" title="male"/>
+				<input type="radio" th:checked="${entity.gender==1?'checked':'false'}" name="gender" value="1" title="female"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">Grade</label>
+			<div class="layui-input-block">
+				<input type="radio" th:checked="${entity.grade==1?'checked':'false'}" name="grade" value="1" title="Senior One"/>
+				<input type="radio" th:checked="${entity.grade==2?'checked':'false'}" name="grade" value="2" title="Senior Two"/>
+				<input type="radio" th:checked="${entity.grade==3?'checked':'false'}" name="grade" value="3" title="Senior Three"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">Class</label>
+			<div class="layui-input-block">
+				<input type="radio" th:checked="${entity.clazz==1?'checked':'false'}" name="clazz" value="1" title="(1)"/>
+				<input type="radio" th:checked="${entity.clazz==2?'checked':'false'}" name="clazz" value="2" title="(2)"/>
+				<input type="radio" th:checked="${entity.clazz==3?'checked':'false'}" name="clazz" value="3" title="(3)"/>
+				<input type="radio" th:checked="${entity.clazz==4?'checked':'false'}" name="clazz" value="4" title="(4)"/>
+				<input type="radio" th:checked="${entity.clazz==5?'checked':'false'}" name="clazz" value="5" title="(5)"/>
+				<input type="radio" th:checked="${entity.clazz==6?'checked':'false'}" name="clazz" value="6" title="(6)"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">Dorm</label>
+			<div class="layui-input-block">
+				<select id="dormId" name="dormId" >
+					<option value="0">无</option>
+					<option th:each="dorm : ${dormList}" th:selected="*{dorm.id} == ${entity.dormId}" th:value="${dorm.id}" th:text="${dorm.dormName}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">Phone</label>
+			<div class="layui-input-block">
+				<input th:value="${entity.phone}" id="phone" name="phone" type="text" class="layui-input newsName" lay-verify="required" placeholder="please inupt phone"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">E-mail</label>
+			<div class="layui-input-block">
+				<input th:value="${entity.email}" id="email" name="email" type="text" class="layui-input newsName" lay-verify="required" placeholder="please input E-mail"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">Description</label>
+			<div class="layui-input-block">
+				<textarea class="layui-textarea" th:text="${entity.studentIntro}" id="studentIntro" name="studentIntro" lay-verify="content" placeholder="please input student description"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" type="submit" lay-submit="">Save</button>
+				<a class="layui-btn" th:href="@{/dmanager/studentList}">Back</a>
+				<button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/student/studentEdit.js"></script>
+</body>
+</html>

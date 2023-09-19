@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>IDAS</title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
+    <link rel="stylesheet" href="/css/main.css" media="all" />
+</head>
+
+<body class="childrenBody">
+<script type="text/javascript" src="/js/echarts.min.js"></script>
+<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/china.js"></script>
+<script type="text/javascript" src="/js/ichart.1.2.1.min.js"></script>
+<script type="text/javascript" src="js/ichart.1.2.1.min.js"></script>
+<script type="text/javascript" src="/ichart.1.2.1.min.js"></script>
+<script type="text/javascript" src="ichart.1.2.1.min.js"></script>
+<script type="text/javascript" src="/layui/layui.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script src="/js/jquery-1.9.1.min.js"></script>
+<div id='canvasDiv'></div>
+<div th:text="${subtitle_text}" id="subtitle_text" hidden></div>
+<div th:text="${state1}" id="s1" hidden></div>
+<div th:text="${state2}" id="s2" hidden></div>
+<div th:text="${state3}" id="s3" hidden></div>
+<div th:text="${state4}" id="s4" hidden></div>
+<div th:text="${state5}" id="s5" hidden></div>
+<div th:text="${state6}" id="s6" hidden></div>
+<div th:text="${state7}" id="s7" hidden></div>
+<div th:text="${state8}" id="s8" hidden></div>
+<div th:text="${state9}" id="s9" hidden></div>
+<script type='text/javascript'>
+    var subtitle_text=$("#subtitle_text").text();
+    var s1=$("#s1").text();
+    var s2=$("#s2").text();
+    var s3=$("#s3").text();
+    var s4=$("#s4").text();
+    var s5=$("#s5").text();
+    var s6=$("#s6").text();
+    var s7=$("#s7").text();
+    var s8=$("#s8").text();
+    var s9=$("#s9").text();
+    /*  s1=parseInt(s1);
+    s2=parseInt(s2);*/
+    $(function(){
+        var data = [
+
+            {name : 'Perfectionist',value : s1,color:'#FF9900'},
+            {name : 'Help',value : s2,color:'#66A9C9'},
+            {name : 'Achievement',value : s3,color:'#2474B5'},
+            {name : 'Artistic',value : s4,color:'#1661AB'},
+            {name : 'Intelligent',value : s5,color:'#EE3F4D'},
+            {name : 'Loyal',value : s6,color:'#EE4866'},
+            {name : 'Hedonistic',value : s7,color:'#ED5A65'},
+            {name : 'leader',value : s8,color:'#F28E16'},
+            {name : 'Peaceful',value : s9,color:'#FA7E23'}
+        ];
+
+        new iChart.Pie2D({
+            render : 'canvasDiv',
+            data: data,
+            title : subtitle_text,
+            subtitle:'',
+            legend : {
+                enable : true
+            },
+            border:{
+                width:0
+            },
+            showpercent:true,
+            decimalsnum:2,
+            width : 1000,
+            height : 700,
+            radius:180
+        }).draw();
+    });
+
+</script>
+
+
+
+
+</body>
+</html>

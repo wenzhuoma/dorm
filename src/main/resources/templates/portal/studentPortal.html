@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IDAS</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layuimini/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuimini/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="/layuimini/css/public.css" media="all">
+    <style>
+         .layui-top-box {padding:40px 20px 20px 20px;color:#fff}
+         .panel {margin-bottom:17px;background-color:#fff;border:1px solid transparent;border-radius:3px;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05)}
+         .panel-body {padding:15px}
+         .panel-title {margin-top:0;margin-bottom:0;font-size:14px;color:inherit}
+         .label {display:inline;padding:.2em .6em .3em;font-size:75%;font-weight:700;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25em;margin-top: .3em;}
+         .layui-red {color:red}
+         .main_btn > p {height:40px;}
+
+     </style>
+     <style>
+         .top-panel {
+             border: 1px solid #eceff9;
+             border-radius: 5px;
+             text-align: center;
+         }
+         .top-panel > .layui-card-body{
+             height: 60px;
+         }
+         .top-panel-number{
+             line-height:60px;
+             font-size: 30px;
+             border-right:1px solid #eceff9;
+         }
+         .top-panel-tips{
+             line-height:30px;
+             font-size: 12px
+         }
+     </style>
+ </head>
+
+ <body>
+
+ <div class="layuimini-container">
+     <div class="layuimini-main layui-top-box">
+         <div class="layui-row layui-col-space10">
+
+             <div class="layui-col-md3">
+                 <div class="col-xs-6 col-md-3">
+                     <div class="panel layui-bg-cyan">
+                         <div class="panel-body">
+                             <div class="panel-title">
+                                 <span class="label pull-right layui-bg-blue">实时</span>
+                                 <h5>学生统计</h5>
+                             </div>
+                             <div class="panel-content">
+                                 <h1 class="no-margins">304</h1>
+                                 <div class="stat-percent font-bold text-gray"><small>当前在校人数</small> <i class="fa fa-female "></i> 150</div>
+                                 <div class="stat-percent font-bold text-gray"><small>当前在校人数</small> <i class="fa fa-male "></i> 154</div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="layui-col-md3">
+                 <div class="col-xs-6 col-md-3">
+                     <div class="panel layui-bg-blue">
+                         <div class="panel-body">
+                             <div class="panel-title">
+                                 <span class="label pull-right layui-bg-orange">实时</span>
+                                 <h5>宿舍统计</h5>
+                             </div>
+                             <div class="panel-content">
+                                 <h1 class="no-margins">40</h1>
+                                 <div class="stat-percent font-bold text-gray"><small>已分配宿舍</small> <i class="fa fa-child "></i> 23</div>
+                                 <div class="stat-percent font-bold text-gray"><small>未分配宿舍</small> <i class="fa fa-circle-o "></i> 17</div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+
+
+             <div class="layui-col-md3">
+                 <div class="col-xs-6 col-md-3">
+                     <div class="panel layui-bg-green">
+                         <div class="panel-body">
+                             <div class="panel-title">
+                                 <span class="label pull-right layui-bg-orange">实时</span>
+                                 <h5>学生分配统计</h5>
+                             </div>
+                             <div class="panel-content">
+                                 <h1 class="no-margins">304</h1>
+                                 <div class="stat-percent font-bold text-gray"><small>已分配学生</small> <i class="fa fa-bed "></i> 201</div>
+                                 <div class="stat-percent font-bold text-gray"><small>未分配学生</small> <i class="fa fa-circle-o "></i> 103</div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="layui-col-md3">
+                 <div class="col-xs-6 col-md-3">
+                     <div class="panel layui-bg-orange">
+                         <div class="panel-body">
+                             <div class="panel-title">
+                                 <span class="label pull-right layui-bg-green">实时</span>
+                                 <h5>性格测试统计</h5>
+                             </div>
+                             <div class="panel-content">
+                                 <h1 class="no-margins">201</h1>
+                                 <div class="stat-percent font-bold text-gray"><small>学生总人数</small> <i class="fa fa-user-o "></i> 304</div>
+                                 <div class="stat-percent font-bold text-gray"><small>未测试学生</small> <i class="fa fa-circle-o "></i> 103</div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+
+
+<!--<div class="layuimini-container">-->
+<div class="layuimini-main">
+
+
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md6">
+            <div id="echarts-dataset" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+        <div class="layui-col-xs12 layui-col-md6">
+            <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<script src="/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="/layuimini/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['layer', 'echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            echarts = layui.echarts;
+
+
+
+        /**
+         * 柱状图
+         */
+        var echartsDataset = echarts.init(document.getElementById('echarts-dataset'), 'walden');
+
+        var optionDataset = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+
+                dimensions: ['product', '已完成', '未完成', '总数'],
+                source: [
+
+                    {product: '宿舍分配', '已完成': 23, '未完成': 17, '总数': 40},
+                    {product: '学生分配', '已完成': 201,'未完成': 103, '总数': 304},
+                    {product: '性格测试', '已完成': 201,'未完成': 103, '总数': 304}
+                ]
+            },
+            xAxis: {type: 'category'},
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [
+                {type: 'bar'},
+                {type: 'bar'},
+                {type: 'bar'}
+            ]
+        };
+
+        echartsDataset.setOption(optionDataset);
+
+
+        /**
+         * 玫瑰图表
+         */
+        var echartsPies = echarts.init(document.getElementById('echarts-pies'), 'walden');
+        var optionPies = {
+            title: {
+                text: '性格比例',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['本能中心', '感情中心', '思想中心']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    roseType: 'radius',
+                    data: [
+                        {value: 20, name: '本能中心'},
+                        {value: 30, name: '感情中心'},
+                        {value: 50, name: '思想中心'}
+                    ],
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        echartsPies.setOption(optionPies);
+
+        // echarts 窗口缩放自适应
+        window.onresize = function () {
+            echartsRecords.resize();
+        }
+
+    });
+</script>
+</body>
+</html>
+</html>

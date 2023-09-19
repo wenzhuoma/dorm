@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>IADS</title>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/css/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="/css/news.css" media="all" />
+</head>
+
+<body class="childrenBody">
+<form class="layui-form"  action="/dmanager/quizSave)" method="post" enctype="multipart/form-data">
+	<input th:value="${quiz.id}" id="id" name="id" type="hidden"/>
+	<div class="layui-form-item" th:if="${end==0}">
+		<label class="layui-form-label">ID</label>
+		<div class="layui-input-block">
+			<label th:text="${quiz.num}" readonly="readonly"  id="num" name="num" type="text" class="layui-input newsName" lay-verify="required" />
+		</div>
+	</div>
+	<div class="layui-form-item" th:if="${end==0}">
+		<label class="layui-form-label">Content</label>
+		<div class="layui-input-block" th:height="50">
+			<textarea th:text="${quiz.message}" readonly="readonly"  id="message" name="message" type="text" class="layui-input newsName" lay-verify="required" />
+		</div>
+	</div>
+
+
+
+	<div class="layui-form-item">
+		<div class="layui-input-block" th:if="${end==0}">
+
+			<a class="layui-btn layui-btn-xs" th:href="@{/dmanager/quizSave(userName=${userName},num=${quiz.num},result=1)}">
+				<i class="layui-icon">Y</i>
+			</a>
+			<a class="layui-btn layui-btn-xs" th:href="@{/dmanager/quizSave(userName=${userName},num=${quiz.num},result=0)}">
+				<i class="layui-icon">N</i>
+			</a>
+
+		</div>
+		<div class="layui-input-block" th:if="${end!=0}">
+
+			<div>Congratulations, you have completed the test, please check it out
+				<a class="layui-btn layui-btn-xs layui-btn-danger" th:href="@{/dmanager/quizResultDate}">
+					personality analysis results
+			</a>！</div>
+		</div>
+	</div>
+</form>
+
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/quiz/doQuiz.js"></script>
+	<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Layui的使用</title>
+    <!--引入核心css和js-->
+    <link rel="stylesheet" type="text/css" href="layui-v2.5.6/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="layui-v2.5.6/layer/theme/default/layer.css"/>
+    <script src="layui-v2.5.6/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+    <script src="layui-v2.5.6/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+
+
+<!-- layer-->
+<script type="text/javascript">
+    layer.msg("Layer1");
+    layui.use("layer",function () {
+        var layer = layui.layer();
+        layer.msg("Layer2");
+    })
+</script>
+
+</body>
+</html>
